@@ -15,4 +15,4 @@ OpenMSX Music Replacement Set for OpenTTD Copyright (C) 2010 OpenMSX Authors (Li
 
 https://github.com/OpenTTD/OpenMSX
 
-Note: This game was quickly rushed, and it is our first time experimenting with Ursina engine. Don't except the code to be good, it just works.
+Note: This game was quickly rushed, and it is our first time experimenting with Ursina engine. Don't expect the code to be good, it just works.
