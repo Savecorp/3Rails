@@ -4,4 +4,8 @@
 
 Made with Ursina engine (Python).
 
+Controls:
+You can change rails using up and down arrows or wasd.
+
+
 Note: This game was quickly rushed, and it is our first time experimenting with Ursina engine. Don't except the code to be good, it just works.
