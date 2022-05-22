@@ -7,6 +7,12 @@ Made with Ursina engine (Python).
 Controls:
 You can change rails using up and down arrows or wasd.
 
-Music is OpenTTD song WoodWhistles. We do not own the song and we did not make it. The repository for the music: https://github.com/OpenTTD/OpenMSX
+# Music
+
+Background music : OpenMSX - Wood Whistles
+
+OpenMSX Music Replacement Set for OpenTTD Copyright (C) 2010 OpenMSX Authors (Licensed under GPL v2)
+
+https://github.com/OpenTTD/OpenMSX
 
 Note: This game was quickly rushed, and it is our first time experimenting with Ursina engine. Don't except the code to be good, it just works.
