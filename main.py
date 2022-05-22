@@ -252,6 +252,16 @@ class train(Entity):
                 self.rotation_z-=15
                 #print ("turned to", self.rotation_z)
 
+        if key=='w':
+            if self.rotation_z > -15:
+                self.rotation_z-=15
+                #print ("turned to", self.rotation_z)
+
+        if key=='s':
+            if self.rotation_z < 15:
+                self.rotation_z+=15
+                #print ("turned to", self.rotation_z)
+
 
 
 
