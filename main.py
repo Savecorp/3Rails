@@ -19,19 +19,19 @@ if not os.path.exists("scoreh.txt"):
 print ("3Rails version: 1.01")
 
 
-window.title = 'Train sim'
+window.title = '3Rails'
 window.borderless = False
 camera.orthographic = True
 camera.position = (30/2,8)
 camera.fov = 16
-tekstuuri = 'juna.png'
-kuolit = 0
+tekstuuri = 'train.png'
+dead = 0
 kiviy = 0
 
 
 window = Ursina()
 
-tausta = Entity(model='quad', texture='tausta.png',poisiton=(0,0,0.001),scale_y=8,scale_x=15)
+tausta = Entity(model='quad', texture='tausta.png',position=(0,0,0.001),scale_y=8,scale_x=15)
 
 scoretext = Text(text="Your Score is: 0", color=color.white, scale=2, x=-.87, y=.48,popup = True)
 scoretexth = Text(text="Your High Score is: 0", color=color.white, scale=2, x=.17, y=.48,popup = True)
@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
 
 
-class juna(Entity):
+class train(Entity):
     def __init__(self, x, speed):
         super().__init__()
         self.model = 'quad'
@@ -84,38 +84,38 @@ class juna(Entity):
         scoreh = open("scoreh.txt", "r")
         scoretexth.text = "Your High Score is: " + str(scoreh.read())
 
-        nuoli.y = self.y - 1.15
+        arrow.y = self.y - 1.15
         self.scale_y=1
         self.scale_x=2
 
         self.x+=0.1 * time.dt*self.speed
-        kuolit = 0
-        #osuuko juna kiveen
-        if juna.intersects(kivi1).hit:
-            print ("kuolit")
-            kivenpaikka1 = [-2.23, 0.35, 2.9]
-            kivi1.y = random.choice(kivenpaikka1)
+        dead = 0
+        #does the train hit a rock
+        if train.intersects(rock1).hit:
+            print ("You Died!")
+            rockposition1 = [-2.23, 0.35, 2.9]
+            rock1.y = random.choice(rockposition1)
             self.speed = speed
             self.score = 0
             scoretext.text = "Your Score is: " + str(self.score)
-            if kuolit == 1:
+            if dead == 1:
                 time.sleep(1)
             self.scale_y = 1
             self.scale_x = 2
-            kuolit = 1
+            dead = 1
 
-        if juna.intersects(kivi2).hit:
-            print ("kuolit")
-            kivenpaikka2 = [-2.23, 0.35, 2.9]
-            kivi2.y = random.choice(kivenpaikka2)
+        if train.intersects(rock2).hit:
+            print ("dead")
+            rockposition2 = [-2.23, 0.35, 2.9]
+            rock2.y = random.choice(rockposition2)
             self.speed = speed
             self.score = 0
             scoretext.text = "Your Score is: " + str(self.score)
-            if kuolit == 1:
+            if dead == 1:
                 time.sleep(1)
             self.scale_y = 1
             self.scale_x = 2
-            kuolit = 1
+            dead = 1
 
 
         #1 -> 2
@@ -197,10 +197,10 @@ class juna(Entity):
 
             print("Score:", self.score)
             self.x = -15
-            kivenpaikka1 = [-2.23, 0.35, 2.9]
-            kivi1.y = random.choice(kivenpaikka1)
-            kivenpaikka2 = [-2.23, 0.35, 2.9]
-            kivi2.y = random.choice(kivenpaikka2)
+            rockposition1 = [-2.23, 0.35, 2.9]
+            rock1.y = random.choice(rockposition1)
+            rockposition2 = [-2.23, 0.35, 2.9]
+            rock2.y = random.choice(rockposition2)
 
 
             if __name__ == '__main__':
@@ -217,8 +217,8 @@ class juna(Entity):
                 finaltrack = 2.9
             self.y = finaltrack
 
-        if kuolit == 1:
-            poks = Audio('poks.mp3', pitch=1, loop=False, autoplay=True)
+        if dead == 1:
+            boom = Audio('boom.mp3', pitch=1, loop=False, autoplay=True)
             if __name__ == '__main__':
                 start = 1  # inclusive
                 end = 4  # exclusive
@@ -245,31 +245,31 @@ class juna(Entity):
         if key=='down arrow':
             if self.rotation_z<15:
                 self.rotation_z+=15
-                #print ("käännyttiin suuntaan",self.rotation_z)
+                #print ("turned to",self.rotation_z)
 
         if key=='up arrow':
             if self.rotation_z > -15:
                 self.rotation_z-=15
-                #print ("käännyttiin suuntaan", self.rotation_z)
+                #print ("turned to", self.rotation_z)
 
 
 
 
-#nuoliy = self.y
+#arrowy = self.y
 
 
 
-#kivi 1
-kivi1 = Entity(model='quad',texture='kivi.png',position=(6.5,-2.23,-0.01),scale_y=1,scale_x=1,collider='box')
-#kivi 2
-kivi2 = Entity(model='quad',texture='kivi.png',position=(6.5,2.9,-0.01),scale_y=1,scale_x=1,collider='box')
-#nuoli
-nuoli = Entity(model='quad',texture='punainennuoli.png',position=(-6.4,0,-0.01), rotation_z=(180),scale_y=0.75,scale_x=1)
+#rock 1
+rock1 = Entity(model='quad',texture='rock.png',position=(6.5,-2.23,-0.01),scale_y=1,scale_x=1,collider='box')
+#rock 2
+rock2 = Entity(model='quad',texture='rock.png',position=(6.5,2.9,-0.01),scale_y=1,scale_x=1,collider='box')
+#arrow
+arrow = Entity(model='quad',texture='redarrow.png',position=(-6.4,0,-0.01), rotation_z=(180),scale_y=0.75,scale_x=1)
 
 
-juna = juna(x, speed)
+train = train(x, speed)
 
-musiikki = Audio('WoodWhistles.mp3', pitch=1, loop=True, autoplay=True)
+music = Audio('WoodWhistles.mp3', pitch=1, loop=True, autoplay=True)
 
 
 
